@@ -1,8 +1,8 @@
 genesis_block = {
-        'previous_hash': '',
-        'index': 0,
-        'transactions': []
-    }
+    'previous_hash': '',
+    'index': 0,
+    'transactions': []
+}
 blockchain = [genesis_block]
 open_transactions = []
 owner = 'Adithya'
@@ -25,7 +25,8 @@ def add_transaction(recipient, sender=owner, amount=1.0):
 
 
 def hash_block(block):
-    return '-'.join([str(last_block[key]) for key in last_block])
+    return '-'.join([str(block[key]) for key in block])
+
 
 def mine_block():
     last_block = blockchain[-1]
@@ -48,9 +49,20 @@ def verify_chain():
     for (index, block) in enumerate(blockchain):
         if(index == 0):
             continue
-        if block['previous_block'] != hash_block(blockchain[index-1])
+        if block['previous_hash'] != hash_block(blockchain[index-1]):
             return False
     return True
+
+
+def print_blockchain_elements():
+    """Output all the blocks of the current blockchain"""
+    for block in blockchain:
+        print('Outputting Block')
+        print(block)
+    else:
+        print('-'*30)
+
+
 flag = True
 
 while flag:
@@ -58,8 +70,9 @@ while flag:
     print('1: Add a new transaction value')
     print('2: Mine a new block')
     print('3: Output Blockchain blocks')
+    print('h: Manipulate the chain')
     print('q: Quit')
-    print()
+
     user_choice = input('Your choice: ')
 
     if(user_choice == '1'):
@@ -67,12 +80,24 @@ while flag:
         recipient, amount = tx_info
         add_transaction(recipient, amount=amount)
         print(open_transactions)
-    if(user_choice == '2'):
+    elif(user_choice == '2'):
         mine_block()
+    elif user_choice == '3':
+        print_blockchain_elements()
+    elif user_choice == 'h':
+        if(len(blockchain)>=1):
+            blockchain[0] = {
+                'previous_hash': '',
+                'index': 0,
+                'transactions': [{'sender': 'ushe', 'recipient':'Adithya', 'amount': 10.0}]
+            }
     elif(user_choice == 'q'):
         flag = False
     else:
         print("Invalid input!!!")
-    if 
+    if not verify_chian():
+        print_blockchain_elements()
+        print('Invalid Blockchain')
+        break
 else:
     print('User Aborted!')
