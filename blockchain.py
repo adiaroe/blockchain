@@ -72,7 +72,7 @@ while flag:
     print('3: Output Blockchain blocks')
     print('h: Manipulate the chain')
     print('q: Quit')
-
+    
     user_choice = input('Your choice: ')
 
     if(user_choice == '1'):
