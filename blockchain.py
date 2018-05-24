@@ -59,7 +59,7 @@ while flag:
     print('2: Mine a new block')
     print('3: Output Blockchain blocks')
     print('q: Quit')
-    print()
+    
     user_choice = input('Your choice: ')
 
     if(user_choice == '1'):
