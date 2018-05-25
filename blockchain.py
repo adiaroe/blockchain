@@ -1,14 +1,18 @@
 MINING_REWARD = 10
 
+#creating a genesis block which denotes the starting block without any transactions
 genesis_block =  {
     'previous_hash':'', 
     'index':0, 
     'transactions':[]
 }
+#initializing the current blockchain with the genesis block
 blockchain = [genesis_block]
+#store open transactions to evnetually mine a block
 open_transactions = []
 owner = 'Adithya'
-participants =  {'Adithya'}
+#intializing the participant list with the owner's name
+participants =  {owner}
 
 
 def get_balance(participant):
